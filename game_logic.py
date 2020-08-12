@@ -1,11 +1,13 @@
 import random
 
+#make a 4*4 matrix
 def start_game():
     mat=[]
     for i in range(4):
         mat.append([0]*4)
     return mat
 
+#add 2 at random position
 def add_new_2(mat):
     r=random.randint(0,3)
     c=random.randint(0,3)
@@ -14,6 +16,7 @@ def add_new_2(mat):
         c=random.randint(0,3)
     mat[r][c]=2
 
+#getting the current status of game
 def get_current_state(mat):
     for i in range(4):
         for j in range(4):
@@ -40,6 +43,7 @@ def get_current_state(mat):
 
     return 'Lost'
 
+# compress the matrix 
 def compress(mat):
     new_mat=[]
     for i in range(4):
@@ -57,6 +61,7 @@ def compress(mat):
     
     return new_mat,changed
 
+#merge the two number which are same and at continous position
 def merge(mat):
     changed=False
     for i in range(4):
@@ -67,6 +72,7 @@ def merge(mat):
                 mat[i][j+1]=0
     return mat,changed
 
+#reverse the matrix
 def reverse(mat):
     new_mat=[]
     for i in range(4):
@@ -75,6 +81,7 @@ def reverse(mat):
             new_mat[i].append(mat[i][4-j-1])
     return new_mat
 
+#transpose of matrix
 def transpos(mat):
     new_mat=[]
     for i in range(4):
@@ -83,6 +90,8 @@ def transpos(mat):
             new_mat[i].append(mat[j][i])
     return new_mat
 
+
+#movement of numbers
 def move_left(mat):
     new_mat,changed1=compress(mat)
     new_mat,changed2=merge(new_mat)
@@ -118,17 +127,5 @@ def move_down(mat):
     new_mat=reverse(new_mat)
     final_mat=transpos(new_mat)
     return final_mat ,changed
-
-
-# mat=start_game()
-# print(mat)
-# add_new_2(mat)
-# add_new_2(mat)
-# add_new_2(mat)
-# add_new_2(mat)
-# add_new_2(mat)
-# print(mat)
-# m=move_down(mat)
-# print(m)
 
 

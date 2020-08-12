@@ -7,7 +7,7 @@ import constant as c
 class Game2048(Frame):
     def __init__(self):
         #inherite the fram_init function
-        Frame.__init__(self)                #by using this we make a frame
+        Frame.__init__(self)                
 
         self.grid()                         #the frame is visiulise as grid
         self.master.title('2048')           #it's the title of game at the center of frame
@@ -15,7 +15,7 @@ class Game2048(Frame):
         self.master.bind("<Key>",self.key_down)
         self.commands={c.KEY_UP:game_logic.move_up, c.KEY_DOWN:game_logic.move_down,c.KEY_LEFT:game_logic.move_left, c.KEY_RIGHT:game_logic.move_right}
 
-        self.grid_cells=[]                   #in the given grid their are some which is initially empty
+        self.grid_cells=[]                   
         self.init_grid()                     #initialize the grid and add the grid cells
         self.init_matrix()                   #it will create the matrix of 4*4
         self.update_grid_cells()             #it upgrade the grid cells according to the no present in grid cells
@@ -23,7 +23,7 @@ class Game2048(Frame):
         self.mainloop()                      #it run the programm
 
     def init_grid(self):
-        #inside a frame we make another frame(400*400) which is type of visit(button),here self means previous frame
+        #inside a frame we make another frame(400*400) 
         backround=Frame(self, bg=c.BACKGROUND_COLOR_GAME,width=c.SIZE,height=c.SIZE)
         backround.grid()
 
@@ -32,10 +32,10 @@ class Game2048(Frame):
             for j in range(c.GRID_LEN):
                 #inside the background we make small size(100*100) of frames(cell)
                 cell=Frame(backround,bg=c.BACKGROUND_COLOR_CELL_EMPTY,width=c.SIZE/c.GRID_LEN,height=c.SIZE/c.GRID_LEN)
-                #cell.grid means inside the grid we gave padding beteween cells
+                
                 cell.grid(row=i,column=j,padx=c.GRID_PADDING,pady=c.GRID_PADDING)
 
-                #label means we add text (2,4,8) 
+                
                 t=Label(master=cell,text="",bg=c.BACKGROUND_COLOR_CELL_EMPTY,justify=CENTER,font=c.FONT,width=5,height=2)
                 t.grid()
                 grid_row.append(t)
@@ -58,7 +58,7 @@ class Game2048(Frame):
         self.update_idletasks()             #it will wait untill all the color are changed
 
     def key_down(self,event):
-        key=repr(event.char)                #it give exect value(like "'w'")
+        key=repr(event.char)                #it give exect value of keys(like "'w'")
         if key in self.commands:
             self.matrix,changed=self.commands[repr(event.char)](self.matrix)
             if changed:
